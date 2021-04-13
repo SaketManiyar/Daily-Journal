@@ -1,0 +1,35 @@
+<%- include("header") -%>                                 <!--just call this and it make reponse all the header quality -->
+    
+    <div class="box" id="heading"> 
+        <h1> <%=listTitle%> </h1>
+    </div>
+
+
+    <div class="box">
+        <%   newListItems.forEach(function(item){  %>                                   <!--this is not html therefore used the ejs-->
+        <form action="/delete" method="post">
+
+            <div class="item">
+                <input type="checkbox" onChange="this.form.submit()" name="checkbox" value="<%= item._id %>">      <!--when checkbox state is changed, then submitted-->
+                <p> <%=item.name%> </p>                                                                 <!--this is html therefore no use of ejs-->
+            </div>
+            <input type="hidden" name="listName" value="<%= listTitle %>"></input>      <!--allows to include data that cannot be seen or modified by users-->
+        </form>                                                                             <!--name is used to refer to the element-->
+        <%  })   %>
+
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
+        </form>
+
+    </div>
+
+<%- include("footer") -%>
+    
+    
+   
+        
+    
+
+    
